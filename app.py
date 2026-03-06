@@ -251,6 +251,19 @@ if predict:
     pct = min(100, (pred_aqi / 500) * 100)
     subtext = "#555" if cat != "Very Poor" else "#A09090"
 
+    # Pre-build readings HTML to avoid nested f-string rendering issues
+    readings_html = ""
+    for ic, nm, val in [("🔴", "PM 2.5", pm25), ("🟠", "PM 10", pm10), ("🟡", "NO₂", no2)]:
+        readings_html += f"""
+        <div style="background:white;border-radius:12px;padding:.7rem 1rem;
+          display:flex;justify-content:space-between;align-items:center;
+          box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <span style="font-size:.82rem;color:#555;">{ic} {nm}</span>
+          <span style="font-weight:700;font-size:.95rem;color:#1A1A2E;">
+            {val:.0f} <span style="font-weight:300;font-size:.72rem;color:#888;">µg/m³</span>
+          </span>
+        </div>"""
+
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(f"""
     <div style="background:{bg};border:2px solid {accent}30;border-radius:28px;
@@ -268,12 +281,7 @@ if predict:
 
         <div style="display:flex;flex-direction:column;gap:.6rem;min-width:190px;">
           <div style="font-size:.7rem;color:{subtext};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.1rem;">Your Readings</div>
-          {''.join([
-            f'<div style="background:white;border-radius:12px;padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);">'
-            f'<span style="font-size:.82rem;color:#555;">{ic} {nm}</span>'
-            f'<span style="font-weight:700;font-size:.95rem;color:#1A1A2E;">{val:.0f} <span style="font-weight:300;font-size:.72rem;color:#888;">µg/m³</span></span></div>'
-            for ic,nm,val in [("🔴","PM 2.5",pm25),("🟠","PM 10",pm10),("🟡","NO₂",no2)]
-          ])}
+          {readings_html}
         </div>
       </div>
 
