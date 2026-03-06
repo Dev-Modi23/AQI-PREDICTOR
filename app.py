@@ -146,8 +146,22 @@ with tab5:
 # WHY CHOOSE US
 st.markdown("---")
 st.markdown("""
+<div style='background: white; padding: 2rem; border-radius: 20px; margin: 2rem auto; 
+            max-width: 900px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center;'>
+<h2 style='color: #1e293b;'>🚀 Why AI AQI Pro Beats Google</h2>
+<div style='display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;'>
+    <div style='background: #ecfdf5; padding: 1.5rem; border-radius: 15px; flex: 1; min-width: 200px;'>
+        <b>🤖 5 AI Features</b><br>Google = 1 number only
+    </div>
+    <div style='background: #fef3c7; padding: 1.5rem; border-radius: 15px; flex: 1; min-width: 200px;'>
+        <b>🏭 Source Detection</b><br>Know EXACT pollution cause
+    </div>
+    <div style='background: #fee2e2; padding: 1.5rem; border-radius: 15px; flex: 1; min-width: 200px;'>
+        <b>🗺️ Route Planner</b><br>Avoid red pollution zones
+    </div>
+</div>
 <p style='color: #64748b; margin-top: 2rem;'>
-| Production ML Engineer | R²: 0.906 | SDG 11
+<b>Dev Modi</b> | Production ML Engineer | R²: 0.906 | SDG 11
 </p>
 </div>
 """, unsafe_allow_html=True)
