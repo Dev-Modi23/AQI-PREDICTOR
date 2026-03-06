@@ -278,16 +278,8 @@ st.markdown("---")
 
 st.markdown("""
 <center>
-
-### 🚀 Why AI AQI Pro Is Advanced
-
-✔ AI Prediction Model  
-✔ Pollution Source Detection  
-✔ Clean Air Route Planning  
-✔ Health Risk Analysis  
-✔ Interactive Heatmap  
-
-Developed by **Dev Modi**
+Developed by **AQI ANALYZER TEAM**
 
 </center>
 """,unsafe_allow_html=True)
+
