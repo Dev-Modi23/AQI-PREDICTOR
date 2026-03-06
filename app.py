@@ -251,50 +251,60 @@ if predict:
     pct = min(100, (pred_aqi / 500) * 100)
     subtext = "#555" if cat != "Very Poor" else "#A09090"
 
-    # Pre-build readings HTML to avoid nested f-string rendering issues
-    readings_html = ""
-    for ic, nm, val in [("🔴", "PM 2.5", pm25), ("🟠", "PM 10", pm10), ("🟡", "NO₂", no2)]:
-        readings_html += f"""
-        <div style="background:white;border-radius:12px;padding:.7rem 1rem;
-          display:flex;justify-content:space-between;align-items:center;
-          box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-          <span style="font-size:.82rem;color:#555;">{ic} {nm}</span>
-          <span style="font-weight:700;font-size:.95rem;color:#1A1A2E;">
-            {val:.0f} <span style="font-weight:300;font-size:.72rem;color:#888;">µg/m³</span>
-          </span>
-        </div>"""
-
     st.markdown("<br>", unsafe_allow_html=True)
+
+    # ── Result card: outer wrapper + left panel ──
     st.markdown(f"""
     <div style="background:{bg};border:2px solid {accent}30;border-radius:28px;
-      padding:2.5rem 3rem;margin-bottom:1.5rem;box-shadow:0 12px 48px {accent}18;">
-
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;">
-        <div>
-          <div style="font-size:.75rem;color:{subtext};letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;">
-            📍 {city} · Air Quality Index
-          </div>
-          <div style="font-family:'DM Serif Display',serif;font-size:5.5rem;color:{accent};line-height:1;">{pred_aqi:.0f}</div>
-          <div style="font-size:1.3rem;font-weight:600;color:{accent};margin-top:.3rem;">{emoji} {cat}</div>
-          <div style="font-size:.88rem;color:{subtext};margin-top:.6rem;max-width:340px;line-height:1.6;">{desc}</div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:.6rem;min-width:190px;">
-          <div style="font-size:.7rem;color:{subtext};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.1rem;">Your Readings</div>
-          {readings_html}
-        </div>
+      padding:2.5rem 3rem 1.5rem;margin-bottom:0;box-shadow:0 12px 48px {accent}18;">
+      <div style="font-size:.75rem;color:{subtext};letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;">
+        📍 {city} · Air Quality Index
       </div>
+      <div style="font-family:'DM Serif Display',serif;font-size:5.5rem;color:{accent};line-height:1;">{pred_aqi:.0f}</div>
+      <div style="font-size:1.3rem;font-weight:600;color:{accent};margin-top:.3rem;">{emoji} {cat}</div>
+      <div style="font-size:.88rem;color:{subtext};margin-top:.6rem;max-width:500px;line-height:1.6;">{desc}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-      <div>
-        <div style="display:flex;justify-content:space-between;font-size:.72rem;color:{subtext};margin-bottom:.5rem;">
-          <span>😊 Good</span><span>🙂 OK</span><span>😐 Moderate</span><span>😷 Poor</span><span>🚨 Severe</span>
-        </div>
-        <div style="position:relative;background:rgba(0,0,0,0.08);border-radius:20px;height:12px;overflow:visible;">
-          <div style="width:{pct}%;height:100%;
-            background:linear-gradient(90deg,#52B788,#F59E0B,#F97316,#E11D48,#9F1239);
-            border-radius:20px;box-shadow:0 2px 10px {bar}60;"></div>
-        </div>
-        <div style="text-align:right;font-size:.72rem;color:{subtext};margin-top:.4rem;">{pred_aqi:.0f} / 500</div>
+    # ── Your Readings panel ──
+    col_l, col_r = st.columns([2, 1])
+    with col_r:
+        st.markdown(f"""
+        <div style="background:{bg};border:2px solid {accent}20;border-radius:20px;
+          padding:1.2rem 1.4rem;margin-top:-2px;">
+          <div style="font-size:.7rem;color:{subtext};letter-spacing:1.5px;
+            text-transform:uppercase;margin-bottom:.7rem;font-weight:600;">Your Readings</div>
+        """, unsafe_allow_html=True)
+
+        for ic, nm, val in [("🔴", "PM 2.5", pm25), ("🟠", "PM 10", pm10), ("🟡", "NO₂", no2)]:
+            st.markdown(f"""
+            <div style="background:white;border-radius:12px;padding:.7rem 1rem;
+              display:flex;justify-content:space-between;align-items:center;
+              box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:.5rem;">
+              <span style="font-size:.82rem;color:#555;">{ic} {nm}</span>
+              <span style="font-weight:700;font-size:.95rem;color:#1A1A2E;">
+                {val:.0f}&nbsp;<span style="font-weight:300;font-size:.72rem;color:#888;">µg/m³</span>
+              </span>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    # ── AQI Scale bar ──
+    st.markdown(f"""
+    <div style="background:{bg};border:2px solid {accent}20;border-radius:20px;
+      padding:1.2rem 1.8rem 1.4rem;margin-bottom:1.5rem;">
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;
+        color:{subtext};margin-bottom:.5rem;">
+        <span>😊 Good</span><span>🙂 OK</span><span>😐 Moderate</span><span>😷 Poor</span><span>🚨 Severe</span>
+      </div>
+      <div style="background:rgba(0,0,0,0.08);border-radius:20px;height:12px;overflow:hidden;">
+        <div style="width:{pct}%;height:100%;
+          background:linear-gradient(90deg,#52B788,#F59E0B,#F97316,#E11D48,#9F1239);
+          border-radius:20px;box-shadow:0 2px 10px {bar}60;"></div>
+      </div>
+      <div style="text-align:right;font-size:.72rem;color:{subtext};margin-top:.4rem;">
+        {pred_aqi:.0f} / 500
       </div>
     </div>
     """, unsafe_allow_html=True)
