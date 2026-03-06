@@ -204,7 +204,20 @@ for label, icon, color, bg, short, safe_val, slider_key, s_max, s_def in [
 col_city, _, col_btn = st.columns([1.2, 0.15, 1])
 with col_city:
     st.markdown('<div style="font-weight:600;font-size:.88rem;color:#555;margin-bottom:.4rem;">🏙️ Select Your City</div>', unsafe_allow_html=True)
-    city = st.selectbox("City", ["Delhi","Mumbai","Bangalore","Chennai","Kolkata"], label_visibility="collapsed")
+    city = st.selectbox("City", [
+        # North India
+        "Delhi", "Noida", "Gurgaon", "Lucknow", "Kanpur", "Agra", "Varanasi",
+        "Jaipur", "Jodhpur", "Chandigarh", "Amritsar", "Ludhiana",
+        # West India
+        "Mumbai", "Pune", "Nagpur", "Surat", "Ahmedabad", "Vadodara", "Nashik",
+        # South India
+        "Bangalore", "Chennai", "Hyderabad", "Kochi", "Coimbatore",
+        "Thiruvananthapuram", "Visakhapatnam", "Madurai",
+        # East India
+        "Kolkata", "Bhubaneswar", "Patna", "Ranchi", "Guwahati",
+        # Central India
+        "Bhopal", "Indore", "Raipur",
+    ], label_visibility="collapsed")
 with col_btn:
     st.markdown("<br>", unsafe_allow_html=True)
     predict = st.button("🌬️  Check Air Quality", type="primary", use_container_width=True)
