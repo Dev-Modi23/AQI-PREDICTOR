@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import folium
 from streamlit_folium import folium_static
 
-st.set_page_config(layout="wide", page_title="AI AQI Pro", page_icon="🌍")
+st.set_page_config(layout="wide", page_title="AI AQI Pro", page_icon="🌐")
 
 # ========== CLEAN AQI FUNCTION (No timestamps/PM2.5) ==========
 def get_aqi(city_name):
@@ -218,6 +218,7 @@ st.markdown("""
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906</p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
