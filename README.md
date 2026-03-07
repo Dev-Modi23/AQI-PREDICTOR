@@ -84,14 +84,19 @@ Regression - Decision Tree
 
 # 📊 AQI Categories
 
-  AQI Range   Air Quality                      Health Impact
-  ----------- -------------------------------- ---------------------------
-  0--50       Good                             Minimal impact
-  51--100     Moderate                         Acceptable air quality
-  101--150    Unhealthy for Sensitive Groups   Sensitive people affected
-  151--200    Unhealthy                        Everyone may feel effects
-  201--300    Very Unhealthy                   Serious health effects
-  301+        Hazardous                        Emergency conditions
+  AQI Range      Air Quality                       Health Impact
+  -----------   --------------------------------   ---------------------------
+  0--50         Good                               Minimal impact
+  
+  51--100       Moderate                           Acceptable air quality
+  
+  101--150      Unhealthy for Sensitive Groups     Sensitive people affected
+  
+  151--200      Unhealthy                          Everyone may feel effects
+  
+  201--300      Very Unhealthy                     Serious health effects
+  
+  301+          Hazardous                          Emergency conditions
 
 ------------------------------------------------------------------------
 
