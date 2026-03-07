@@ -108,8 +108,8 @@ h1 {text-align: center; font-size: 3.5rem !important; font-weight: 800;
 """, unsafe_allow_html=True)
 
 # ========== HEADER ==========
-st.title("🌐 AI AQI Pro")
-st.markdown("<center>✅ FIXED AQI • 58 Cities • Realistic Trends</center>", unsafe_allow_html=True)
+st.title("🌐 AQI PREDICTOR")
+st.markdown("<center>Air Quality Intelligence • 50+ Indian Cities Coverage</center>", unsafe_allow_html=True)
 
 # ========== 58 CITIES SELECTOR ==========
 cities_display = [
@@ -247,10 +247,12 @@ with tab5:
 st.markdown("---")
 st.markdown("""
 <div style='text-align:center;padding:2rem;background:rgba(255,255,255,0.05);border-radius:20px;'>
-<h3 style='color:#22c55e;'>🚀 AI AQI Pro - 58 Cities • Production Ready</h3>
+<h3 style='color:#22c55e;'>🚀 AQI PREDICTOR - 50+ Cities Coverage</h3>
 <div style='display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:1.1rem;color:#94a3b8;'>
-<div>✅ 58 Cities</div><div>🔒 Fixed AQI</div><div>📈 Realistic Trends</div><div>🧠 AI Sources</div>
+<div>🛰️Satellite Analytics</div><div>🔮 Advanced AI</div><div>⚠️Predictive Alerts</div>
+<div>⏱️Real-Time Sensors</div><div>🫁 Health Advisory</div><div>📱Mobile Platform</div>
 </div>
-<p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906</p>
+<p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906 | 50+ Cities</p>
 </div>
 """, unsafe_allow_html=True)
+
