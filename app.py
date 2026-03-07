@@ -90,9 +90,6 @@ current_aqi = aqi_data["aqi"]
 col1, col2 = st.columns([3, 1])
 with col1:
     st.metric("🌡️ Current AQI", f"{current_aqi}")
-with col2:
-    st.caption("Real-time")
-
 # ========== AQI GAUGE ==========
 fig = go.Figure(go.Indicator(
     mode="gauge+number",
@@ -218,6 +215,7 @@ st.markdown("""
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906</p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
