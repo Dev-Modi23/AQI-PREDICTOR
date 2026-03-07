@@ -212,10 +212,11 @@ st.markdown("""
 <div style='text-align:center;padding:2rem;background:rgba(255,255,255,0.05);border-radius:20px;'>
 <h3 style='color:#22c55e;'>🚀 Upcoming Features</h3>
 <div style='display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:1.1rem;color:#94a3b8;'>
-<div>🛰️Satellite Analytics</div><div>🔮 Advanced AI</div><div>🗺️ Maps</div>
-<div>⏱️Real-Time Sensors</div><div>🫁 Health Scores</div><div>📱Mobile Platform</div>
+<div>🛰️Satellite Analytics</div><div>🔮 Advanced AI</div><div>⚠️Predictive Alerts</div>
+<div>⏱️Real-Time Sensors</div><div>🫁 Health Advisory</div><div>📱Mobile Platform</div>
 </div>
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906</p>
 </div>
 """, unsafe_allow_html=True)
+
 
