@@ -138,19 +138,20 @@ st.metric("Predicted AQI",current_aqi)
 
 # ================= GAUGE =================
 fig=go.Figure(go.Indicator(
-mode="gauge+number",
-value=current_aqi,
-title={'text':f"AQI - {city_name}"},
-gauge={
-'axis':{'range':[0,500]},
-'bar':{'color':"#22c55e" if current_aqi<150 else "#ef4444"},
-'steps':[
-{'range':[0,50],'color':"#10b981"},
-{'range':[50,100],'color':"#84cc16"},
-{'range':[100,200],'color':"#facc15"},
-{'range':[200,300],'color':"#fb923c"},
-{'range':[300,500],'color':"#ef4444"}
-]
+    mode="gauge+number",
+    value=current_aqi,
+    title={'text':f"AQI - {city_name}"},
+    gauge={
+        'axis':{'range':[0,500]},
+        'bar':{'color':"#22c55e" if current_aqi<150 else "#ef4444"},
+        'steps':[
+            {'range':[0,50],'color':"#10b981"},
+            {'range':[50,100],'color':"#84cc16"},
+            {'range':[100,200],'color':"#facc15"},
+            {'range':[200,300],'color':"#fb923c"},
+            {'range':[300,500],'color':"#ef4444"}
+        ]
+    }
 ))
 st.plotly_chart(fig,use_container_width=True)
 
@@ -197,6 +198,6 @@ with tab4:
     else:
         st.success("Good air quality")
 
-# ================= ORIGINAL FOOTER =================
+# ================= FOOTER =================
 st.markdown("---")
 st.markdown("Dev Modi | AI AQI Predictor | ML Integrated")
