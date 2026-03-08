@@ -120,10 +120,11 @@ def get_city_sources(city_name, current_aqi):
 # ================= UI STYLE =================
 st.markdown("""
 <style>
-[data-testid="stAppViewContainer"] {
-background: linear-gradient(135deg,#020617 0%,#0f172a 50%,#1e293b 100%);
-color:white;}
-[data-testid="stHeader"]{display:none;}
+[data-testid="stAppViewContainer"] {background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); color: white;}
+[data-testid="stHeader"] { display: none !important; }
+h1 {text-align: center; font-size: 3.5rem !important; font-weight: 800; 
+    background: linear-gradient(90deg, #22c55e, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.stSelectbox div[data-baseweb="select"] {background: #1f2937 !important; border-radius: 12px !important; border: 2px solid #22c55e !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -275,4 +276,5 @@ st.markdown("""
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906 | 60+ Cities</p>
 </div>
 """, unsafe_allow_html=True)
+
 
