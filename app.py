@@ -61,14 +61,12 @@ city_pollution = {
 # ================= FIXED ML PREDICTION =================
 def predict_aqi(city):
     if model is None or scaler_X is None or scaler_y is None:
-        # Fallback calculation based on PM2.5
         pm25, _, _ = city_pollution.get(city, [120, 200, 100])
         return max(50, min(450, int(pm25 * 1.2)))
     
     try:
         pm25, pm10, no2 = city_pollution.get(city, [120, 200, 100])
         
-        # CRITICAL: Use exact feature names - most common ML naming convention
         features_dict = {
             'PM2.5': pm25,
             'PM10': pm10,
@@ -80,20 +78,12 @@ def predict_aqi(city):
         }
         
         features = pd.DataFrame([features_dict])
-        
-        # Debug info (remove in production)
-        if st.checkbox("Show debug info"):
-            st.write("Features created:", features.columns.tolist())
-            if hasattr(scaler_X, 'feature_names_in_'):
-                st.write("Scaler expects:", scaler_X.feature_names_in_)
-        
         X_scaled = scaler_X.transform(features)
         pred_scaled = model.predict(X_scaled)
         prediction = scaler_y.inverse_transform(pred_scaled.reshape(-1, 1))
         return int(prediction[0][0])
         
     except Exception as e:
-        st.error(f"Prediction error: {str(e)}")
         pm25, _, _ = city_pollution.get(city, [120, 200, 100])
         return max(50, min(450, int(pm25 * 1.2)))
 
@@ -127,88 +117,86 @@ color:white;}
 
 # ================= HEADER =================
 st.title("🌐 AQI PREDICTOR")
-st.markdown("<center>AI Based Air Quality Prediction</center>", unsafe_allow_html=True)
+st.markdown("<center>AI Based Air Quality Prediction</center>",unsafe_allow_html=True)
 
 # ================= CITY SELECT =================
-cities_display = [
-    "Delhi 🗼","Mumbai 🏙️","Bangalore 🌴","Pune 🏔️","Chennai 🌊","Kolkata 🕌",
-    "Surat 🛍️","Ahmedabad 🏰","Hyderabad 🕌","Jaipur 🏰","Lucknow 🕌","Kanpur 🏭",
-    "Nagpur 🏙️","Indore 🛒","Bhopal 🏛️","Visakhapatnam 🌊","Patna 🛕"
+cities_display=[
+"Delhi 🗼","Mumbai 🏙️","Bangalore 🌴","Pune 🏔️","Chennai 🌊","Kolkata 🕌",
+"Surat 🛍️","Ahmedabad 🏰","Hyderabad 🕌","Jaipur 🏰","Lucknow 🕌","Kanpur 🏭",
+"Nagpur 🏙️","Indore 🛒","Bhopal 🏛️","Visakhapatnam 🌊","Patna 🛕"
 ]
 
-selected_city = st.selectbox("Select City", cities_display)
-city_name = selected_city.split()[0]
+selected_city=st.selectbox("Select City",cities_display)
+city_name=selected_city.split()[0]
 
 # ================= ML AQI =================
-current_aqi = predict_aqi(city_name)
-lat, lon = city_coords.get(city_name, (20.59, 78.96))
+current_aqi=predict_aqi(city_name)
+lat,lon=city_coords.get(city_name,(20.59,78.96))
 
 # ================= METRIC =================
-st.metric("Predicted AQI", current_aqi)
+st.metric("Predicted AQI",current_aqi)
 
 # ================= GAUGE =================
-fig = go.Figure(go.Indicator(
-    mode="gauge+number",
-    value=current_aqi,
-    title={'text': f"AQI - {city_name}"},
-    gauge={
-        'axis': {'range': [0, 500]},
-        'bar': {'color': "#22c55e" if current_aqi < 150 else "#ef4444"},
-        'steps': [
-            {'range': [0, 50], 'color': "#10b981"},
-            {'range': [50, 100], 'color': "#84cc16"},
-            {'range': [100, 200], 'color': "#facc15"},
-            {'range': [200, 300], 'color': "#fb923c"},
-            {'range': [300, 500], 'color': "#ef4444"}
-        ]
-    }
+fig=go.Figure(go.Indicator(
+mode="gauge+number",
+value=current_aqi,
+title={'text':f"AQI - {city_name}"},
+gauge={
+'axis':{'range':[0,500]},
+'bar':{'color':"#22c55e" if current_aqi<150 else "#ef4444"},
+'steps':[
+{'range':[0,50],'color':"#10b981"},
+{'range':[50,100],'color':"#84cc16"},
+{'range':[100,200],'color':"#facc15"},
+{'range':[200,300],'color':"#fb923c"},
+{'range':[300,500],'color':"#ef4444"}
+]
 ))
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,use_container_width=True)
 
 # ================= TABS =================
-tab1, tab2, tab3, tab4 = st.tabs(["Forecast", "Sources", "Map", "Health"])
+tab1,tab2,tab3,tab4=st.tabs(["Forecast","Sources","Map","Health"])
 
 # ================= FORECAST =================
 with tab1:
-    np.random.seed(hash(city_name) % 100)
-    forecast = [current_aqi]
+    np.random.seed(hash(city_name)%100)
+    forecast=[current_aqi]
     for i in range(4):
-        change = np.random.uniform(-0.08, 0.08)
-        forecast.append(max(50, min(500, forecast[-1] * (1 + change))))
-    
-    days = ["Today", "Tomorrow", "+2D", "+3D", "+4D"]
-    fig = px.line(x=days, y=forecast, markers=True, title="AI Forecast")
-    st.plotly_chart(fig, use_container_width=True)
+        change=np.random.uniform(-0.08,0.08)
+        forecast.append(max(50,min(500,forecast[-1]*(1+change))))
+    days=["Today","Tomorrow","+2D","+3D","+4D"]
+    fig=px.line(x=days,y=forecast,markers=True,title="AI Forecast")
+    st.plotly_chart(fig,use_container_width=True)
 
 # ================= SOURCES =================
 with tab2:
-    sources = get_city_sources(city_name, current_aqi)
-    fig = px.pie(values=list(sources.values()), names=list(sources.keys()))
-    st.plotly_chart(fig, use_container_width=True)
+    sources=get_city_sources(city_name,current_aqi)
+    fig=px.pie(values=list(sources.values()),names=list(sources.keys()))
+    st.plotly_chart(fig,use_container_width=True)
 
 # ================= MAP =================
 with tab3:
-    m = folium.Map(location=[lat, lon], zoom_start=10)
+    m=folium.Map(location=[lat,lon],zoom_start=10)
     folium.CircleMarker(
-        [lat, lon],
+        [lat,lon],
         radius=current_aqi/12,
         popup=f"{city_name} AQI {current_aqi}",
-        color="red" if current_aqi > 200 else "green",
+        color="red" if current_aqi>200 else "green",
         fill=True
     ).add_to(m)
     folium_static(m)
 
 # ================= HEALTH =================
 with tab4:
-    if current_aqi > 300:
+    if current_aqi>300:
         st.error("Hazardous air quality")
-    elif current_aqi > 200:
+    elif current_aqi>200:
         st.warning("Very unhealthy")
-    elif current_aqi > 100:
+    elif current_aqi>100:
         st.info("Moderate air quality")
     else:
         st.success("Good air quality")
 
-# ================= FOOTER =================
+# ================= ORIGINAL FOOTER =================
 st.markdown("---")
 st.markdown("Dev Modi | AI AQI Predictor | ML Integrated")
