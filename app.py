@@ -40,7 +40,7 @@ def get_aqi(city_name):
         "Gorakhpur": 180, "Allahabad": 155
     }
     
-     city_coords = {
+    city_coords = {
         "Delhi": (28.61, 77.21), "Ghaziabad": (28.67, 77.42), "Faridabad": (28.41, 77.31),
         "Noida": (28.58, 77.33), "Gurugram": (28.46, 77.03), "Kanpur": (26.45, 80.33),
         "Lucknow": (26.85, 80.95), "Meerut": (28.99, 77.71), "Agra": (27.18, 78.02),
@@ -255,6 +255,7 @@ st.markdown("""
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906 | 50+ Cities</p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
