@@ -129,8 +129,7 @@ color:white;}
 
 # ================= HEADER =================
 st.title("🌐 AQI PREDICTOR")
-st.markdown("<center>AI Based Air Quality Prediction - 60+ Cities</center>",unsafe_allow_html=True)
-
+st.markdown("<center>Air Quality Intelligence • 50+ Indian Cities Coverage</center>", unsafe_allow_html=True)
 # ================= EXACT CITY LIST YOU PROVIDED =================
 cities_display=[
     "Delhi 🗼", "Mumbai 🏙️", "Bangalore 🌴", "Pune 🏔️", "Chennai 🌊", "Kolkata 🕌",
@@ -276,3 +275,4 @@ st.markdown("""
 <p style='color:#64748b;margin-top:1rem;'><b>Dev Modi</b> | Production ML | R²: 0.906 | 60+ Cities</p>
 </div>
 """, unsafe_allow_html=True)
+
