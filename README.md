@@ -127,7 +127,13 @@ python app.py
 
 ------------------------------------------------------------------------
 
+## 🌐 Live Website
+
+(https://aqi-predictor-ai.streamlit.app/)
+
+------------------------------------------------------------------------
+
 # 👨‍💻 Author
 
-**Dev Modi**\
+**Code4Air**\
 GitHub: https://github.com/Dev-Modi23
