@@ -96,7 +96,7 @@ Regression - Decision Tree
   
   201--300   -   Very Unhealthy               -      Serious health effects
   
-  301+        -  Hazardous                    -      Emergency conditions TAKE PRECOTIONS
+  301+        -  Hazardous                    -      Emergency conditions 
 
 ------------------------------------------------------------------------
 
@@ -136,10 +136,10 @@ python app.py
 # 👨‍💻 Author
 
 **Code4Air**\
-**Team Members
+Team Members
 - Dev Modi
 - Prachi Khamanwala
 - Manav Kankotiya
-- Krutaswi Bhalani**
+- Krutaswi Bhalani
 
 GitHub: https://github.com/Dev-Modi23
