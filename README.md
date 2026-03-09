@@ -44,12 +44,12 @@ take preventive measures.
 
 # 🧠 Machine Learning Pipeline
 
-1.  Data Collection\
-2.  Data Cleaning & Preprocessing\
-3.  Feature Engineering\
-4.  Model Training\
-5.  Model Evaluation\
-6.  AQI Prediction\
+1.  Data Collection
+2.  Data Cleaning & Preprocessing
+3.  Feature Engineering
+4.  Model Training
+5.  Model Evaluation
+6.  AQI Prediction
 7.  Data Visualization
 
 ------------------------------------------------------------------------
@@ -135,7 +135,7 @@ python app.py
 
 # 👨‍💻 Author
 
-**Code4Air**\
+**Code4Air**
 Team Members
 - Dev Modi
 - Prachi Khamanwala
